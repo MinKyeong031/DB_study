@@ -14,3 +14,6 @@ SELECT * FROM employees;
 SELECT employee_id, first_name, salary, salary+300 FROM employees;
 
 SELECT employee_id, first_name, salary, NVL(salary, 0)+300 FROM employees;
+
+--SELECT emplyee_id 사원번호, salary FROM employees WHERE 사원번호 > 200;
+SELECT employee_id 사원번호, salary FROM employees WHERE employee_id > 200;
