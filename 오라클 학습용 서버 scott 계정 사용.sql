@@ -104,6 +104,73 @@ SELECT TRIM(LEADING 'A' FROM 'AABDCADD') 걸과1,
  TRIM(TRAILING 'D' FROM 'AABDCADD') 걸과3
  FROM dual;
  
+SELECT ROUND(4567.678) 결과1,
+ ROUND(4567.678, 0) 결과2,
+ ROUND(4567.678, 2) 결과3,
+ ROUND(4567.678, -2) 결과4
+ FROM dual;
+
+ 
+SELECT TRUNC(4567.678) 결과1,
+ TRUNC(4567.678, 0) 결과2,
+ TRUNC(4567.678, 2) 결과3,
+ TRUNC(4567.678, -2) 결과4
+ FROM dual;
+
+SELECT POWER(2, 10) 결과1, CEIL(3.7) 결과2, FLOOR(3.7) 결과3 FROM dual;
+
+SELECT POWER(2, 10) 결과1, CEIL(-3.7) 결과2, FLOOR(-3.7) 결과3 FROM dual;
+
+SELECT sal, MOD(sal, 30) FROM emp WHERE deptno = 10;
+
+SELECT sal, SIGN(sal-2975) FROM emp WHERE deptno = 10;
+
+SELECT sal, SIGN(sal-2975), SIGN(sal-5000), SIGN(sal-2000) FROM emp WHERE deptno = 10;
+
+SELECT value FROM nls_session_parameters WHERE parameter = 'NLS_TIMESTAMP_FORMAT';
+
+SELECT value FROM nls_session_parameters WHERE parameter = 'NLS_TIMESTAMP_TZ_FORMAT';
+
+SELECT value FROM nls_session_parameters WHERE parameter = 'NLS_LANGUAGE';
+
+SELECT SYSDATE FROM dual;
+
+SELECT LOCALTIMESTAMP FROM dual;
+
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
+
+SELECT SYSDATE FROM dual;
+
+SELECT ename, hiredate, sysdate, sysdate-hiredate "Total Days",
+trunc ((sysdate-hiredate)/7, 0) weeks,
+round (mod((sysdate-hiredate), 7), 0) DAY
+FROM emp ORDER BY sysdate-hiredate desc;
+
+SELECT EXTRACT(DAY FROM SYSDATE) 일자,
+ EXTRACT(MONTH FROM SYSDATE) 월,
+ EXTRACT(YEAR FROM SYSDATE) 년도
+ FROM dual;
+
+SELECT SYSTIMESTAMP A,
+ EXTRACT(HOUR FROM SYSTIMESTAMP) B,
+ TO_CHAR(SYSTIMESTAMP, 'HH24') C
+ FROM dual;
+
+SELECT ename, hiredate, EXTRACT(YEAR FROM hiredate) 입사년도,
+EXTRACT(DAY FROM hiredate) 입사일자
+FROM emp WHERE deptno = 20;
+
+SELECT ename, hiredate, sysdate, months_between(sysdate, hiredate) m_between,
+trunc(months_between(sysdate, hiredate), 0) t_between
+FROM emp WHERE deptno = 10 ORDER BY months_between(sysdate, hiredate) DESC;
+
+SELECT ename, hiredate, add_months(hiredate, 5) "5개월 후" FROM emp WHERE deptno IN(10,30) ORDER BY hiredate desc;
+
+
+
+
+
+
 
 
 

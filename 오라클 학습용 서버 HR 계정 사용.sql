@@ -53,7 +53,11 @@ SELECT first_name, LPAD(first_name, 15, '*'), salary, LPAD(salary, 10, '*') FROM
 
 SELECT first_name, RPAD(first_name, 15, '*'), salary, RPAD(salary, 10, '*') FROM employees WHERE department_id = 20;
 
+SELECT first_name, hire_date, hire_date+3, hire_date+5/24 FROM employees WHERE department_id = 30;
 
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
+
+SELECT SYSDATE FROM dual;
 
 
 
