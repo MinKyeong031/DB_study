@@ -166,9 +166,45 @@ FROM emp WHERE deptno = 10 ORDER BY months_between(sysdate, hiredate) DESC;
 
 SELECT ename, hiredate, add_months(hiredate, 5) "5개월 후" FROM emp WHERE deptno IN(10,30) ORDER BY hiredate desc;
 
+SELECT ename, hiredate, NEXT_DAY(hiredate, 6) "n-6", NEXT_DAY(hiredate, 7) "n-7" FROM emp WHERE deptno = 10 ORDER BY hiredate desc;
 
+SELECT empno, ename, hiredate, last_day(hiredate) l_last, last_day(hiredate)-hiredate l_day FROM emp ORDER BY last_day(hiredate)-hiredate desc;
 
+SELECT TO_CHAR(sysdate, 'YY/MM/DD HH24:MI:SS') normal, 
+TO_CHAR(trunc(sysdate), 'YY/MM/DD HH24:MI:SS') trunc,
+TO_CHAR(round(sysdate), 'YY/MM/DD HH24:MI:SS') round
+FROM dual;
 
+SELECT hiredate, ROUND(hiredate, 'MONTH'), 
+ ROUND(hiredate, 'YEAR') FROM emp; --WHERE deptno = 10;
+
+SELECT empno, ename, job, sal, TO_CHAR(sal, '999,999') FROM emp WHERE deptno = 20 ORDER BY sal desc;
+
+SELECT TO_CHAR(sysdate, 'WW') test FROM dual;
+
+SELECT ename, hiredate, TO_CHAR(hiredate, 'YYYY"년" MM"월" DD"일"') t_kor FROM emp WHERE deptno = 10 ORDER BY hiredate desc;
+
+SELECT empno, ename, TO_CHAR(hiredate, 'YY/MM/DD(DAY) HH:MI:SS AM') 입사일 FROM emp WHERE job = 'CLERK';
+
+SELECT TO_CHAR(ADD_MONTHS(TO_DATE('201905', 'YYYYMM'), 15), 'YYYYMM') TEST1 FROM dual;
+
+SELECT TO_CHAR(TO_DATE('98', 'RR'), 'YYYY') test1,
+TO_CHAR(TO_DATE('05', 'RR'), 'YYYY') test2,
+TO_CHAR(TO_DATE('98', 'YY'), 'YYYY') test3,
+TO_CHAR(TO_DATE('05', 'YY'), 'YYYY') test4
+FROM dual;
+
+SELECT ename, hiredate, TO_CHAR(NEXT_DAY(ADD_MONTHS(hiredate, 6), 1), 'yyyy/month/dd') "Next 6 Month" FROM emp; 
+
+SELECT '00012340' 결과1, TO_NUMBER('00012340') 결과2 FROM dual;
+
+SELECT TO_TIMESTAMP('2004-8-20 1:30:00', 'YYYY-MM-DD HH:MI:SS') FROM dual;
+
+SELECT TO_TIMESTAMP('10-09-77 14:10:10.123000', 'DD-MM-RR HH24:MI:SS.FF') FROM dual;
+
+SELECT sysdate, sysdate+TO_DSINTERVAL('003 11:25:33') AS "결과" FROM dual;
+
+SELECT empno, ename, hiredate, hiredate + TO_YMINTERVAL('01-06') AS date2 FROM emp;
 
 
 
