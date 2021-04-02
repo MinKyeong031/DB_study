@@ -206,7 +206,58 @@ SELECT sysdate, sysdate+TO_DSINTERVAL('003 11:25:33') AS "결과" FROM dual;
 
 SELECT empno, ename, hiredate, hiredate + TO_YMINTERVAL('01-06') AS date2 FROM emp;
 
+SELECT ename, sal, comm, sal+NVL(comm, 0) 금액 FROM emp WHERE deptno=30;
 
+SELECT ename, deptno, mgr, NVL2(mgr, '담당', '상위자') 결과 FROM emp WHERE deptno<>30;
+
+SELECT ename, job, NULLIF(job,'SALESMAN') AS result FROM emp WHERE deptno=30;
+
+SELECT ename, comm ,sal, COALESCE(comm, sal, 50) result FROM emp;
+
+SELECT ename, sal, comm, GREATEST(sal, comm) 결과 FROM emp; WHERE comm is not null;
+
+SELECT ename, sal, comm, LEAST(sal, comm) 결과 FROM emp WHERE comm is not null;
+
+SELECT empno, ename, sal, job, DECODE(job, 'ANALYST', sal*1.1, 'CLERK', sal*1.2
+, 'MANAGER', sal*1.3, 'PRESIDENT', sal*1.4, 'SALESMAN', sal*1.5, sal) 변경결과 FROM emp;
+
+SELECT empno, ename, sal, job, CASE job WHEN 'ANALYST' THEN sal*1.1 WHEN 'CLERK' THEN sal*1.2
+WHEN 'MANAGER' THEN sal*1.3 WHEN 'PRESIDENT' THEN sal*1.4 WHEN 'SALESMAN' THEN sal*1.5
+ELSE sal END salary FROM emp;
+
+SELECT ename, sal, DECODE(SIGN(sal-1000), -1, 'A', DECODE(SIGN(sal-2500), -1, 'B', 'C')) grade FROM emp;
+
+SELECT ename, sal, CASE WHEN sal < 1000 THEN 'A' WHEN sal < 2500 THEN 'B' ELSE 'C' END grade FROM emp;
+
+CREATE TABLE member
+(
+ID          CHAR(50),
+PWD         CHAR(50),
+NAME        CHAR(50),
+GENDER      CHAR(2),
+AGE         NUMBER(3),
+BIRTHDAY    CHAR(10),
+PHONE       CHAR(13),
+REGDATE     DATE
+);
+
+ALTER TABLE MEMBER MODIFY ID NVARCHAR2(5);
+
+ALTER TABLE MEMBER DROP COLUMN AGE;
+
+DROP TABLE member;
+
+CREATE TABLE member
+(
+ID          CHAR(50),
+PWD         CHAR(50),
+NAME        CHAR(50),
+GENDER      CHAR(2),
+AGE         NUMBER(3),
+BIRTHDAY    CHAR(10),
+PHONE       CHAR(13),
+REGDATE     DATE
+);
 
 
 
