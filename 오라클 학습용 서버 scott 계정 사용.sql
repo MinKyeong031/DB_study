@@ -259,9 +259,41 @@ PHONE       CHAR(13),
 REGDATE     DATE
 );
 
+SELECT * FROM emp;
 
+SELECT MIN(ename), MAX(ename), MIN(hiredate), MAX(hiredate) FROM emp;
 
+SELECT AVG(sal), MAX(sal), MIN(sal), SUM(sal) FROM emp WHERE JOB='SALESMAN';
 
+SELECT count(*) c1, count(comm) c2, AVG(comm) c3, AVG(NVL(comm, 0)) c4 FROM emp;
+
+SELECT count(deptno) c_dept, count(distinct deptno) c_dis, count(distinct job) c_job FROM emp;
+
+SELECT AVG(comm), SUM(comm)/12 FROM emp;
+
+SELECT AVG(NVL(comm,0)), SUM(comm)/12 FROM emp;
+
+SELECT deptno, count(*), TRUNC(AVG(sal),1), MIN(sal), MAX(sal), SUM(sal) FROM emp GROUP BY deptno;
+
+SELECT deptno, ename, count(*), TRUNC(AVG(sal),1), MIN(sal), MAX(sal), SUM(sal) FROM emp GROUP BY deptno;
+
+SELECT deptno, count(*), TRUNC(AVG(sal),1), MIN(sal), MAX(sal), SUM(sal) FROM emp GROUP BY deptno ORDER BY SUM(sal) desc;
+
+SELECT job, count(*), TRUNC(AVG(sal),1), SUM(sal) FROM emp GROUP BY job;
+
+SELECT job, deptno, count(*), AVG(sal), SUM(sal) FROM emp GROUP BY job, deptno;
+
+SELECT job, deptno, count(*), AVG(sal), SUM(sal) FROM emp GROUP BY deptno, job;
+
+SELECT job, deptno, count(*), AVG(sal), SUM(sal) FROM emp GROUP BY deptno, job ORDER BY deptno;
+
+SELECT ROWNUM, empno, ename, hiredate FROM emp ORDER BY ename;
+
+SELECT ROW_NUMBER() OVER (ORDER BY ename), ename, empno, hiredate FROM emp;
+
+SELECT RANK() OVER (ORDER BY ename DESC), ename, empno, hiredate FROM emp;
+
+SELECT deptno, TRUNC(AVG(sal),1) FROM emp GROUP BY deptno HAVING AVG(sal)>2000;
 
 
 
