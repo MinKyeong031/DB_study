@@ -72,7 +72,7 @@ SELECT INSTR('ABCDEFG', 'A'),
 INSTR('ABCDEFG','E'),
 INSTR('ABCDEFG','CDE'),
 INSTR('ABCDEFG','DBC')
-FROM dual;;
+FROM dual;
 
 SELECT INSTR('ABBCCCDDD', 'C', 5, 2) IN1, 
 INSTR('ABBCCCDDD','C',6, 2) IN2,
@@ -214,7 +214,7 @@ SELECT ename, job, NULLIF(job,'SALESMAN') AS result FROM emp WHERE deptno=30;
 
 SELECT ename, comm ,sal, COALESCE(comm, sal, 50) result FROM emp;
 
-SELECT ename, sal, comm, GREATEST(sal, comm) 결과 FROM emp; WHERE comm is not null;
+SELECT ename, sal, comm, GREATEST(sal, comm) 결과 FROM emp WHERE comm is not null;
 
 SELECT ename, sal, comm, LEAST(sal, comm) 결과 FROM emp WHERE comm is not null;
 
@@ -294,9 +294,4 @@ SELECT ROW_NUMBER() OVER (ORDER BY ename), ename, empno, hiredate FROM emp;
 SELECT RANK() OVER (ORDER BY ename DESC), ename, empno, hiredate FROM emp;
 
 SELECT deptno, TRUNC(AVG(sal),1) FROM emp GROUP BY deptno HAVING AVG(sal)>2000;
-
-
-
-
-
 

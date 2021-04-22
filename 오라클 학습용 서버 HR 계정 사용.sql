@@ -55,13 +55,24 @@ SELECT first_name, RPAD(first_name, 15, '*'), salary, RPAD(salary, 10, '*') FROM
 
 SELECT first_name, hire_date, hire_date+3, hire_date+5/24 FROM employees WHERE department_id = 30;
 
+-- EXTRACT 함수
+SELECT 
+   EXTRACT(DAY FROM SYSDATE) 일자, -- 일자를 추출낸다
+   EXTRACT(MONTH FROM SYSDATE) 월, -- 월을 추출낸다
+   EXTRACT(YEAR FROM SYSDATE) 년도  -- 년도를 추출낸다
+FROM dual;   
+
+SELECT 
+    SYSTIMESTAMP,
+    TO_CHAR(SYSTIMESTAMP,'HH24') CH,
+    EXTRACT(TIMEZONE_HOUR FROM SYSTIMESTAMP) etzh,
+    EXTRACT(HOUR FROM SYSTIMESTAMP) eh,
+    EXTRACT(HOUR FROM CAST(SYSTIMESTAMP AS TIMESTAMP)) ehc
+FROM dual;  
+
 ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
 
 SELECT SYSDATE FROM dual;
-
-
-
-
 
 
 
