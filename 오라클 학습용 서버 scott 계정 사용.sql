@@ -295,3 +295,46 @@ SELECT RANK() OVER (ORDER BY ename DESC), ename, empno, hiredate FROM emp;
 
 SELECT deptno, TRUNC(AVG(sal),1) FROM emp GROUP BY deptno HAVING AVG(sal)>2000;
 
+
+---------------------------------------------------------------------------
+
+
+SELECT MIN(ename), MAX(ename), MIN(hiredate), MAX(hiredate) FROM emp;
+
+SELECT * FROM emp;
+
+SELECT * FROM member;
+
+SELECT AVG(sal), MAX(sal), MIN(sal), SUM(sal) FROM emp WHERE job='SALESMAN';
+
+SELECT  COUNT(*) C1, COUNT(comm) C2, AVG(comm) C3, AVG(NVL(comm, 0)) FROM emp;
+
+SELECT COUNT(deptno) c_dept, COUNT(distinct deptno) c_dis, COUNT(distinct job) c_job FROM emp;
+
+SELECT AVG(comm), SUM(comm)/14 FROM emp;
+
+SELECT deptno, COUNT(*), ROUND(AVG(sal)), MIN(sal), MAX(sal), SUM(sal) FROM emp GROUP BY deptno ORDER BY deptno;
+
+SELECT deptno, COUNT(*), ROUND(AVG(sal)), MIN(sal), MAX(sal), SUM(sal) FROM emp GROUP BY deptno ORDER BY SUM(sal) DESC;
+
+SELECT deptno, job, COUNT(*), ROUND(AVG(sal)), SUM(sal) FROM emp GROUP BY deptno, job;
+
+SELECT deptno, job, COUNT(*), ROUND(AVG(sal)), SUM(sal) FROM emp GROUP BY job, deptno;
+
+SELECT deptno, COUNT(*), SUM(sal) FROM emp GROUP BY deptno HAVING COUNT(*) > 2;
+
+SELECT deptno, AVG(sal), SUM(sal) FROM emp GROUP BY deptno HAVING MAX(sal) >= 2900;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
