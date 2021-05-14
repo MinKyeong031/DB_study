@@ -325,8 +325,50 @@ SELECT deptno, COUNT(*), SUM(sal) FROM emp GROUP BY deptno HAVING COUNT(*) > 2;
 
 SELECT deptno, AVG(sal), SUM(sal) FROM emp GROUP BY deptno HAVING MAX(sal) >= 2900;
 
+SELECT deptno, job, SUM(sal) FROM emp GROUP BY ROLLUP(deptno, job);
 
+SELECT deptno, job, SUM(sal) FROM emp GROUP BY ROLLUP((deptno, job));
 
+SELECT deptno, job, SUM(sal) FROM emp GROUP BY ROLLUP(job);
+
+SELECT deptno, job, ename, SUM(sal) FROM emp GROUP BY ROLLUP(deptno, job, ename);
+
+SELECT deptno, job, ename, SUM(sal) FROM emp GROUP BY ROLLUP(deptno, (job, ename));
+
+SELECT deptno, job, ename, SUM(sal) FROM emp GROUP BY deptno, ROLLUP((job, ename));
+
+SELECT job, SUM(sal) FROM emp GROUP BY CUBE(job);
+
+CREATE TABLE SCORELIST(
+NAME VARCHAR2(10),
+SUBJECT VARCHAR2(10),
+SCORE NUMBER(4)
+);
+
+INSERT INTO SCORELIST VALUES('ºß', '¼öÇÐ', 92);
+INSERT INTO SCORELIST VALUES('Áö¹Î', '¿µ¾î', 92);
+INSERT INTO SCORELIST VALUES('Áö¹Î', '¼öÇÐ', 94);
+INSERT INTO SCORELIST VALUES('ºß', '¿µ¾î', 96);
+
+SELECT * FROM SCORELIST;
+
+COMMIT;
+
+SELECT NULL, NULL, AVG(SCORE) FROM SCORELIST UNION ALL
+SELECT SUBJECT, NAME, AVG(SCORE) FROM SCORELIST GROUP BY SUBJECT, NAME UNION ALL
+SELECT SUBJECT, NULL, AVG(SCORE) FROM SCORELIST GROUP BY SUBJECT UNION ALL
+SELECT NULL, NAME, AVG(SCORE) FROM SCORELIST GROUP BY NAME;
+
+SELECT subject, name, AVG(score) FROM scorelist GROUP BY GROUPING SETS(
+(subject, name),
+subject, name, () );
+
+SELECT subject, name, AVG(score) FROM scorelist GROUP BY GROUPING SETS(
+(), (subject, name), subject, name);
+
+select * from scorelist;
+
+select empno, ename, emp.deptno e_deptno, dept.deptno d_deptno, dname from dept, emp where dept.deptno = emp.deptno; 
 
 
 
