@@ -370,11 +370,16 @@ select * from scorelist;
 
 select empno, ename, emp.deptno e_deptno, dept.deptno d_deptno, dname from dept, emp where dept.deptno = emp.deptno; 
 
+SELECT e.empno, e.ename, e.job, e.deptno, d.deptno, d.dname
+FROM dept d, emp e WHERE d.deptno = e.deptno(+);
 
+SELECT e.ename, e.sal, d.deptno, d.dname
+FROM emp e, dept d
+WHERE e.deptno(+)=d.deptno AND e.sal>2000;
 
-
-
-
+SELECT e.ename, e.sal, d.deptno, d.dname
+FROM emp e, dept d
+WHERE e.deptno(+)=d.deptno AND e.sal(+)>2000;
 
 
 

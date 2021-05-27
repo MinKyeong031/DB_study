@@ -18,3 +18,41 @@ SELECT * FROM DEPARTMENTS;)
 
 SELECT employees.first_name 사원명, employees.department_id 부서1, departments.department_id 부서2, departments.department_name 부서명 from employees, departments where employees.department_id = departments.department_id ORDER BY employees.first_name;
 
+SELECT emp.employee_id, emp.first_name, emp.job_id, emp.salary, job.job_title, job.min_salary, job.max_salary
+ FROM employees emp, jobs job WHERE emp.job_id = job.job_id AND
+ emp.salary >= job.min_salary AND emp.salary <= job.max_salary
+ ORDER BY job_id;
+ 
+ SELECT * FROM employees;
+ SELECT * FROM jobs;
+ 
+SELECT emp.employee_id, emp.first_name, emp.job_id, emp.department_id, dept.department_id, dept.department_name
+ FROM employees emp, departments dept WHERE emp.department_id(+)=dept.department_id;
+ 
+SELECT emp.employee_id, emp.first_name, emp.job_id, emp.department_id, dept.department_id, dept.department_name
+ FROM employees emp, departments dept WHERE emp.department_id=dept.department_id(+);
+ 
+ 
+SELECT * FROM employees;
+SELECT * FROM departments;
+
+SELECT department_id, department_name, loc.location_id, city
+FROM departments dept, locations loc
+WHERE dept.location_id(+)=loc.location_id(+);
+--양쪽에 플러스기호 사용 불가능
+
+SELECT department_id, department_name, loc.location_id, city
+FROM departments dept, locations loc
+WHERE dept.location_id(+)=loc.location_id
+UNION
+
+SELECT department_id, department_name, loc.location_id, city
+FROM departments dept, locations loc
+WHERE dept.location_id=loc.location_id(+);
+
+
+
+
+
+
+
