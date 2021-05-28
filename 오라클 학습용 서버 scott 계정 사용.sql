@@ -381,7 +381,16 @@ SELECT e.ename, e.sal, d.deptno, d.dname
 FROM emp e, dept d
 WHERE e.deptno(+)=d.deptno AND e.sal(+)>2000;
 
+SELECT e.empno 사원번호, e.ename 사원이름, m.empno 관리자사번, m.ename 관리자이름
+FROM emp e, emp m
+WHERE e.mgr=m.empno;
 
+SELECT e.ename, deptno, d.dname FROM emp e NATURAL JOIN dept d;
 
+SELECT e.ename, d.deptno, d.dname FROM emp e NATURAL JOIN dept d;
 
+SELECT e.ename, e.sal, s.grade FROM emp e JOIN salgrade s ON (e.sal BETWEEN s.losal AND s.hisal) ORDER BY e.sal DESC;SELECT e.ename, e.sal, e.deptno, d.deptno, d.dname FROM emp e, dept d WHERE e.deptno(+)= d.deptno AND e.sal(+)>2000;
 
+SELECT e.ename, e.sal, e.deptno, d.deptno, d.dname FROM emp e, dept d WHERE e.deptno(+)= d.deptno AND e.sal(+)>2000;
+
+SELECT e.ename, e.sal, e.deptno, d.deptno, d.dname FROM emp e RIGHT OUTER JOIN dept d ON e.deptno = d.deptno AND e.sal >2000 WHERE e.sal>2000;
