@@ -66,3 +66,21 @@ SELECT emp.employee_id, emp.first_name, emp.job_id, emp.department_id, dept.depa
 
 SELECT emp.employee_id, emp.first_name, emp.job_id, emp.department_id, dept.department_id, dept.department_name
  FROM employees emp RIGHT OUTER JOIN departments dept ON (emp.department_id = dept.department_id);
+ 
+ SELECT first_name, job_id FROM employees WHERE job_id = (SELECT job_id FROM employees WHERE employee_id=120);
+ 
+ SELECT first_name, job_id FROM employees WHERE job_id = 'ST_MAN';
+ 
+ SELECT * FROM employees;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

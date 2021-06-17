@@ -394,3 +394,37 @@ SELECT e.ename, e.sal, s.grade FROM emp e JOIN salgrade s ON (e.sal BETWEEN s.lo
 SELECT e.ename, e.sal, e.deptno, d.deptno, d.dname FROM emp e, dept d WHERE e.deptno(+)= d.deptno AND e.sal(+)>2000;
 
 SELECT e.ename, e.sal, e.deptno, d.deptno, d.dname FROM emp e RIGHT OUTER JOIN dept d ON e.deptno = d.deptno AND e.sal >2000 WHERE e.sal>2000;
+
+SELECT ename, sal FROM emp WHERE  sal > (SELECT sal FROM emp WHERE empno=7566);
+
+SELECT * FROM emp;
+
+SELECT empno, job, hiredate, sal FROM emp WHERE job = (SELECT job FROM emp WHERE empno=7521)
+AND sal > (SELECT sal FROM emp WHERE empno=7934);
+
+-- ¿¡·¯³² SELECT ename, deptno, sal, hiredate FROM emp WHERE sal = MAX(sal);
+
+SELECT ename, deptno, sal, hiredate FROM emp WHERE sal = (SELECT MAX(sal) FROM emp);
+
+SELECT MAX(sal) FROM emp;
+
+SELECT empno, ename, job, sal, deptno FROM emp WHERE sal < (SELECT AVG(sal) FROM emp);
+
+SELECT AVG(sal) FROM emp;
+
+SELECT deptno, MIN(sal) FROM emp GROUP BY deptno HAVING MIN(sal) > (SELECT MIN(sal) FROM emp WHERE deptno=20);
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
